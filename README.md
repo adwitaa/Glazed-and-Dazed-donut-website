@@ -1,6 +1,6 @@
 Author: Adwitaa Singh
 
-# 🍩 Glazed & Dazed – Interactive Dessert Storefront
+#  Glazed & Dazed – Interactive Dessert Storefront
 
 Modern animated dessert storefront built with **Next.js** and **React**, featuring immersive UI interactions, smooth motion design, dynamic cart management, and premium frontend architecture.
 
@@ -8,7 +8,7 @@ An interactive frontend experience crafted for the fictional dessert brand **Gla
 
 ---
 
-## ✨ Live Experience
+## Live Experience
 
 A polished and immersive dessert shopping experience featuring:
 
@@ -23,7 +23,7 @@ A polished and immersive dessert shopping experience featuring:
 
 ---
 
-## 🛠 Built With
+## Built With
 
 - Next.js
 - React.js
@@ -36,29 +36,29 @@ A polished and immersive dessert shopping experience featuring:
 
 ---
 
-## 🚀 Key Features
+### Key Features
 
-### 🎬 Immersive Hero Experience
+### Immersive Hero Experience
 - Animated floating dessert visuals
 - Interactive CTA sections
 - Smooth entrance animations
 - Cinematic landing presentation
 
-### 🛒 Smart Cart Architecture
+### Smart Cart Architecture
 - Global cart state management using Context API
 - Dynamic quantity updates
 - Live cart calculations
 - Slide-in cart interactions
 - Smooth add-to-cart feedback
 
-### 🎨 Modern UI System
+### Modern UI System
 - Reusable React components
 - Scroll-triggered animations
 - Glassmorphism inspired elements
 - Luxury dessert branding aesthetics
 - Interactive hover transitions
 
-### ⚡ Performance & Scalability
+### Performance & Scalability
 - Component-based scalable structure
 - Optimized routing with Next.js
 - Clean folder organization
@@ -67,7 +67,7 @@ A polished and immersive dessert shopping experience featuring:
 
 ---
 
-## 🌟 Project Highlights
+## Project Highlights
 
 - Modular frontend architecture
 - Interactive motion-driven user experience
@@ -77,7 +77,7 @@ A polished and immersive dessert shopping experience featuring:
 
 ---
 
-## 🔮 Future Improvements
+## Future Improvements
 
 - Backend integration
 - Authentication system
