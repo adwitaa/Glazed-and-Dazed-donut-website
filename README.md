@@ -1,63 +1,90 @@
 Author: Adwitaa Singh
-# Glazed & Dazed – Premium Donut Brand Website
-Luxury animated donut brand landing page with interactive cart, immersive UI animations, modern frontend design using HTML, CSS &amp; JavaScript.
 
-An immersive and visually rich frontend website designed for a fictional artisan donut brand **Glazed & Dazed**.
+# 🍩 Glazed & Dazed – Interactive Dessert Storefront
 
-This project focuses on **high-end UI design, smooth animations, luxury branding aesthetics, and interactive shopping cart experience** using pure frontend technologies.
+Modern animated dessert storefront built with **Next.js** and **React**, featuring immersive UI interactions, smooth motion design, dynamic cart management, and premium frontend architecture.
 
----
-
-## Live Experience
-
-A premium landing page experience featuring:
-
-- Cinematic loading screen
-- Floating hero animations
-- Interactive product cards
-- Add to Cart animation system
-- Animated cart drawer
-- Premium typography & branding
-- Smooth scroll transitions
-- Responsive modern layout
+An interactive frontend experience crafted for the fictional dessert brand **Glazed & Dazed**, focused on combining cinematic visuals with scalable modern web development practices.
 
 ---
 
-## Built With
+## ✨ Live Experience
 
-- HTML5
+A polished and immersive dessert shopping experience featuring:
+
+- Animated hero sections
+- Smooth scroll reveal effects
+- Dynamic product showcases
+- Interactive shopping cart system
+- Modern responsive layouts
+- Component-driven architecture
+- Premium motion-based UI
+- Seamless page transitions
+
+---
+
+## 🛠 Built With
+
+- Next.js
+- React.js
+- JavaScript
+- Context API
 - CSS3
-- JavaScript (Vanilla JS)
 - Custom Animations
 - Responsive Design
-- UI/UX Principles
+- Modern UI/UX Principles
 
 ---
 
-## Key Features
+## 🚀 Key Features
 
-### Hero Section
-- Animated donut centerpiece
-- Floating sprinkle effects
-- Premium CTA buttons
+### 🎬 Immersive Hero Experience
+- Animated floating dessert visuals
+- Interactive CTA sections
+- Smooth entrance animations
+- Cinematic landing presentation
 
-### Smart Cart System
-- Add to cart animation
-- Cart drawer panel
-- Quantity controls
-- Live total calculation
-- Checkout interaction
+### 🛒 Smart Cart Architecture
+- Global cart state management using Context API
+- Dynamic quantity updates
+- Live cart calculations
+- Slide-in cart interactions
+- Smooth add-to-cart feedback
 
-### UI Design
-- Elegant luxury color palette
-- Smooth hover effects
-- Glassmorphism touches
-- Premium typography pairing
+### 🎨 Modern UI System
+- Reusable React components
+- Scroll-triggered animations
+- Glassmorphism inspired elements
+- Luxury dessert branding aesthetics
+- Interactive hover transitions
 
-### Performance
-- Lightweight (No frameworks)
-- Fast loading
-- Smooth transitions
+### ⚡ Performance & Scalability
+- Component-based scalable structure
+- Optimized routing with Next.js
+- Clean folder organization
+- Responsive across devices
+- Lightweight frontend interactions
+
+---
+
+## 🌟 Project Highlights
+
+- Modular frontend architecture
+- Interactive motion-driven user experience
+- Modern React development practices
+- Real-world scalable project structure
+- Focus on premium digital brand storytelling
+
+---
+
+## 🔮 Future Improvements
+
+- Backend integration
+- Authentication system
+- Payment gateway integration
+- Product CMS dashboard
+- Dark mode support
+- Wishlist functionality
 
 ---
 
