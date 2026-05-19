@@ -1189,8 +1189,56 @@ footer {
   gap: 1rem;
   margin-bottom: 1.5rem;
 }
-.auth-social-btn {
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   flex: 1;
+}
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: transparent;
+  border: none;
+  color: rgba(255, 246, 233, 0.6);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.05rem;
+  padding: 1rem 1.2rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  text-align: left;
+  font-weight: 500;
+}
+.sidebar-link span {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+  filter: grayscale(1);
+  opacity: 0.7;
+}
+.sidebar-link:hover {
+  background: rgba(255, 246, 233, 0.03);
+  color: var(--cream);
+}
+.sidebar-link:hover span {
+  transform: scale(1.1);
+  filter: grayscale(0);
+  opacity: 1;
+}
+.sidebar-link.active {
+  background: linear-gradient(90deg, rgba(244, 160, 181, 0.15) 0%, rgba(255, 107, 157, 0.05) 100%);
+  color: var(--pink);
+  border-left: 4px solid var(--glaze);
+  border-radius: 8px;
+  font-weight: 600;
+}
+.sidebar-link.active span {
+  filter: grayscale(0);
+  opacity: 1;
+}
+.auth-social-btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1389,43 +1437,107 @@ footer {
    ========================================================================== */
 
 .dashboard-page-container {
-  min-height: 100vh;
-  background: radial-gradient(circle at 50% 50%, #201007 0%, #0d0602 100%);
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background: radial-gradient(circle at top right, #3d1c24, #0d0602);
   display: flex;
   color: var(--cream);
-  padding-top: 6.5rem;
+  position: relative;
+}
+
+/* Ambient Background Elements */
+.dashboard-ambient-donut {
+  position: absolute;
+  top: -10%;
+  right: -5%;
+  font-size: 40vw;
+  opacity: 0.03;
+  filter: blur(10px);
+  pointer-events: none;
+  z-index: 1;
+  animation: floatSlow 20s ease-in-out infinite alternate;
+}
+.dashboard-ambient-star {
+  position: absolute;
+  font-size: 2rem;
+  opacity: 0.15;
+  filter: drop-shadow(0 0 10px rgba(255,107,157,0.5));
+  pointer-events: none;
+  z-index: 1;
+  animation: pulseStar 4s ease-in-out infinite alternate;
+}
+.dashboard-ambient-star.s1 { top: 15%; left: 35%; animation-delay: 0s; }
+.dashboard-ambient-star.s2 { top: 75%; right: 25%; animation-delay: 1.5s; font-size: 3rem; }
+.dashboard-ambient-star.s3 { bottom: 20%; left: 40%; animation-delay: 3s; font-size: 1.5rem; }
+
+@keyframes floatSlow {
+  from { transform: translateY(0) rotate(0deg); }
+  to { transform: translateY(-50px) rotate(15deg); }
+}
+@keyframes pulseStar {
+  from { opacity: 0.1; transform: scale(0.8); }
+  to { opacity: 0.3; transform: scale(1.2); }
 }
 
 /* Sidebar styles */
 .dashboard-sidebar {
-  width: 280px;
-  background: linear-gradient(180deg, #180c06 0%, #0d0602 100%);
-  border-right: 1px solid rgba(255, 246, 233, 0.06);
-  padding: 2rem 1.5rem;
+  width: 300px;
+  background: rgba(13, 6, 2, 0.6);
+  backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(255, 107, 157, 0.1);
+  padding: 2.5rem 2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex-shrink: 0;
+  z-index: 10;
 }
 .sidebar-brand {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
-  margin-bottom: 3rem;
+  margin-bottom: 3.5rem;
+  align-items: flex-start;
 }
 .sidebar-logo {
   font-family: 'Playfair Display', serif;
-  font-size: 1.6rem;
+  font-size: 2rem;
   font-style: italic;
   color: var(--cream);
   text-decoration: none;
-  font-weight: 700;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  text-shadow: 0 0 15px rgba(255, 107, 157, 0.4);
 }
 .sidebar-logo span {
   color: var(--glaze);
+  font-size: 1.5rem;
+}
+.sidebar-logo::before {
+  content: "🍩";
+  font-size: 1.4rem;
+  font-style: normal;
+  margin-right: -10px;
+  transform: translateY(-2px);
+  z-index: -1;
+  filter: drop-shadow(0 0 10px rgba(255,107,157,0.8));
+}
+.sidebar-logo::after {
+  content: "✨";
+  font-size: 0.9rem;
+  font-style: normal;
+  transform: translateY(-10px);
 }
 .sidebar-badge {
   align-self: flex-start;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  background: rgba(255, 107, 157, 0.15);
+  color: var(--pink);
+  border: 1px solid rgba(255, 107, 157, 0.3);
 }
 
 .sidebar-nav {
@@ -1466,30 +1578,36 @@ footer {
 }
 
 .sidebar-footer {
-  border-top: 1px solid rgba(255, 246, 233, 0.06);
-  padding-top: 1.5rem;
-  margin-top: auto;
+  margin-top: 2rem;
+  padding: 1.2rem;
+  background: rgba(13, 6, 2, 0.4);
+  border: 1px solid rgba(255, 107, 157, 0.1);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 .sidebar-user {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1.2rem;
+  gap: 1rem;
 }
 .user-avatar {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
+  background: rgba(244, 160, 181, 0.2);
+  border: 2px solid rgba(255, 107, 157, 0.3);
   border-radius: 50%;
-  background: rgba(255, 107, 157, 0.15);
-  border: 1px solid rgba(255, 107, 157, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 .user-info h4 {
-  font-size: 0.92rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
   font-weight: 600;
+  margin-bottom: 0.1rem;
   color: var(--cream);
 }
 .user-info p {
@@ -1499,27 +1617,30 @@ footer {
 .sidebar-logout-btn {
   background: transparent;
   border: none;
-  outline: none;
-  color: rgba(255, 246, 233, 0.45);
-  font-size: 0.85rem;
-  font-weight: 500;
+  color: rgba(255, 246, 233, 0.6);
   cursor: pointer;
+  font-size: 0.9rem;
+  font-family: 'DM Sans', sans-serif;
+  text-align: left;
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-  transition: color 0.2s;
-  padding: 0.2rem;
+  gap: 0.6rem;
+  transition: color 0.3s ease;
+  padding-top: 0.8rem;
+  border-top: 1px solid rgba(255, 246, 233, 0.05);
 }
 .sidebar-logout-btn:hover {
-  color: #ff6b6b;
+  color: var(--pink);
 }
 
 /* Dashboard main content */
 .dashboard-content-main {
   flex: 1;
-  padding: 3rem 4rem;
+  padding: 4rem 5rem;
   overflow-y: auto;
-  max-height: calc(100vh - 6.5rem);
+  height: 100vh;
+  position: relative;
+  z-index: 5;
 }
 .dashboard-welcome-layer {
   margin-bottom: 2.5rem;
@@ -1933,59 +2054,63 @@ footer {
 .node-label {
   font-size: 0.78rem;
   color: rgba(255, 246, 233, 0.45);
-  font-weight: 500;
-}
-.node-time {
-  font-size: 0.7rem;
-  color: rgba(255, 246, 233, 0.3);
-  margin-top: 0.15rem;
 }
 .timeline-node.completed .node-circle {
-  background: var(--glaze);
-  border-color: var(--glaze);
+  background: var(--pink);
   color: #fff;
-  box-shadow: 0 0 10px rgba(255, 107, 157, 0.3);
+  box-shadow: 0 0 15px rgba(255, 107, 157, 0.4);
 }
-.timeline-node.completed .node-label {
+.node-label {
+  font-size: 0.85rem;
+  font-weight: 600;
   color: var(--cream);
 }
-
-.timeline-progress-track {
-  position: relative;
-  height: 3px;
-  background: rgba(255, 246, 233, 0.05);
-  top: -46px;
-  left: 12.5%;
-  width: 75%;
-  z-index: 1;
-}
-.timeline-progress-fill {
-  height: 100%;
-  background: var(--glaze);
-  transition: width 0.8s ease-out;
+.node-time {
+  font-size: 0.75rem;
+  color: rgba(255, 246, 233, 0.5);
+  text-align: center;
 }
 
-/* Breakdown items */
+.items-breakdown-wrap h4 {
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--pink);
+  margin-bottom: 1rem;
+}
 .breakdown-list {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1rem;
 }
 .breakdown-item {
   display: flex;
   justify-content: space-between;
-  font-size: 0.9rem;
+  align-items: center;
+  background: rgba(255, 246, 233, 0.02);
+  padding: 1rem;
+  border-radius: 12px;
 }
 .bi-name {
-  color: var(--cream);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-weight: 600;
+}
+.bi-name::before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 40px;
+  background-image: url('https://images.unsplash.com/photo-1551024601-bec78aea704b?w=100&q=80');
+  background-size: cover;
+  border-radius: 8px;
 }
 .bi-qty {
   color: rgba(255, 246, 233, 0.4);
-  font-size: 0.8rem;
-  margin-left: 0.4rem;
+  font-size: 0.85rem;
 }
 .bi-price {
-  color: var(--pink);
   font-weight: 500;
 }
 .order-actions-footer {

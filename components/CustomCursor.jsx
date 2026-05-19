@@ -30,8 +30,8 @@ export default function CustomCursor() {
     rafRef.current = requestAnimationFrame(animate);
 
     const grow = () => {
-      if (cursorRef.current) cursorRef.current.style.transform = 'translate(-50%,-50%) scale(2.5)';
-      if (ringRef.current) ringRef.current.style.transform = 'translate(-50%,-50%) scale(1.5)';
+      if (cursorRef.current) cursorRef.current.style.transform = 'translate(-50%,-50%) scale(1)';
+      if (ringRef.current) ringRef.current.style.transform = 'translate(-50%,-50%) scale(1)';
     };
     const shrink = () => {
       if (cursorRef.current) cursorRef.current.style.transform = 'translate(-50%,-50%) scale(1)';

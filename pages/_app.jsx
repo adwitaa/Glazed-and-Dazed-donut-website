@@ -7,8 +7,12 @@ import Footer from '../components/Footer';
 import Cart from '../components/Cart';
 import Toast from '../components/Toast';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 export default function App({ Component, pageProps }) {
+  const router = useRouter();
+  const isDashboard = router.pathname === '/dashboard';
+
   return (
     <CartProvider>
       <Head>
@@ -17,9 +21,9 @@ export default function App({ Component, pageProps }) {
       </Head>
       <Loader />
       <CustomCursor />
-      <Navbar />
+      {!isDashboard && <Navbar />}
       <Component {...pageProps} />
-      <Footer />
+      {!isDashboard && <Footer />}
       <Cart />
       <Toast />
     </CartProvider>
