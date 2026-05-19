@@ -20,7 +20,7 @@ export default function DashboardPage() {
   const [loading, setLoading] = useState(true);
 
   // Dashboard states
-  const [activeTab, setActiveTab] = useState('orders'); // overview, orders, payments
+  const [activeTab, setActiveTab] = useState('overview'); // overview, orders, rewards, payments
   const [expandedOrder, setExpandedOrder] = useState(null); // id of expanded order
   const [invoiceOrder, setInvoiceOrder] = useState(null); // order for invoice modal
   const [addCardModal, setAddCardModal] = useState(false); // card creation modal
@@ -217,13 +217,19 @@ export default function DashboardPage() {
                 onClick={() => setActiveTab('overview')}
                 className={`sidebar-link ${activeTab === 'overview' ? 'active' : ''}`}
               >
-                <span>🏠</span> Overview
+                <span>📊</span> Overview
               </button>
               <button
                 onClick={() => setActiveTab('orders')}
                 className={`sidebar-link ${activeTab === 'orders' ? 'active' : ''}`}
               >
                 <span>📦</span> Previous Orders
+              </button>
+              <button
+                onClick={() => setActiveTab('rewards')}
+                className={`sidebar-link ${activeTab === 'rewards' ? 'active' : ''}`}
+              >
+                <span>✨</span> Rewards &amp; Recs
               </button>
               <button
                 onClick={() => setActiveTab('payments')}
@@ -260,7 +266,7 @@ export default function DashboardPage() {
             <header className="dashboard-content-header">
               <div>
                 <h1>Welcome Back, {userName}!</h1>
-                <p>Here is your sweet dashboard summary for today.</p>
+                <p>Tuesday, May 19, 2026 &mdash; You're 220 points away from a free treat! 🍩</p>
               </div>
 
               {/* Quick Points Indicator */}
@@ -277,170 +283,331 @@ export default function DashboardPage() {
             <div className="mobile-tab-switch">
               <button onClick={() => setActiveTab('overview')} className={activeTab === 'overview' ? 'active' : ''}>Overview</button>
               <button onClick={() => setActiveTab('orders')} className={activeTab === 'orders' ? 'active' : ''}>Orders</button>
+              <button onClick={() => setActiveTab('rewards')} className={activeTab === 'rewards' ? 'active' : ''}>Rewards</button>
               <button onClick={() => setActiveTab('payments')} className={activeTab === 'payments' ? 'active' : ''}>Payments</button>
             </div>
 
             {/* VIEW 1: OVERVIEW */}
             {activeTab === 'overview' && (
-              <div className="dashboard-grid-layout fade-in-dashboard">
+              <div className="dashboard-overview-container fade-in-dashboard">
 
-                {/* LEFT COLUMN: Analytics & Cards */}
-                <div className="dashboard-col-left">
+                {/* FULL WIDTH UPPER BLOCK: Loyalty Points & Membership Tier Progress */}
+                <div className="dashboard-loyalty-showcase-row">
+                  <Card variant="glass" className="premium-loyalty-gold-card" padding="lg">
+                    <div className="loyalty-card-metallic-glow" />
+                    <div className="loyalty-card-flex-body">
+                      
+                      <div className="loyalty-card-left">
+                        <div className="loyalty-brand-top">
+                          <span className="gold-sparkle">✦</span>
+                          <span className="card-tier-label">PLATINUM VIP</span>
+                        </div>
+                        <div className="loyalty-points-display">
+                          <h2>780</h2>
+                          <p>Points Balance</p>
+                        </div>
+                        <div className="loyalty-card-footer-info">
+                          <div>
+                            <span className="cc-lbl">MEMBER NAME</span>
+                            <span className="cc-val">{userName}</span>
+                          </div>
+                          <div>
+                            <span className="cc-lbl">TIER STATUS</span>
+                            <span className="cc-val">Glaze Enthusiast</span>
+                          </div>
+                        </div>
+                      </div>
 
-                  {/* 1. Loyalty Points Card */}
-                  <Card variant="glass" className="loyalty-card" padding="lg">
-                    <div className="loyalty-card-bg-glow" />
-                    <div className="loyalty-header">
+                      <div className="loyalty-card-right">
+                        <h3>Membership Tier Progress</h3>
+                        <p className="progress-hint">You are <strong>220 points</strong> away from <strong>Donut Master</strong> tier</p>
+                        
+                        <div className="tier-progress-milestones">
+                          <div className="milestone-line">
+                            <div className="milestone-fill" style={{ width: '78%' }} />
+                          </div>
+                          <div className="milestone-node completed">
+                            <div className="milestone-dot">1</div>
+                            <span className="milestone-label">Glaze Cadet</span>
+                          </div>
+                          <div className="milestone-node completed">
+                            <div className="milestone-dot">2</div>
+                            <span className="milestone-label">Caramel Captain</span>
+                          </div>
+                          <div className="milestone-node active">
+                            <div className="milestone-dot">3</div>
+                            <span className="milestone-label">Glaze Enthusiast</span>
+                          </div>
+                          <div className="milestone-node">
+                            <div className="milestone-dot">4</div>
+                            <span className="milestone-label">Donut Master</span>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </Card>
+                </div>
+
+                {/* BOTTOM BLOCK GRID: Charts & Analytics */}
+                <div className="dashboard-analytics-grid-row">
+                  
+                  {/* Left Chart: Monthly Dessert Activity & Spending Summary */}
+                  <Card variant="default" className="fintech-chart-card">
+                    <div className="card-header-flex">
                       <div>
-                        <Badge variant="gold">Level 3</Badge>
-                        <h2>Glaze Enthusiast</h2>
+                        <h3>Dessert Activity</h3>
+                        <p className="card-subtitle">Monthly orders tracking & spend summary</p>
                       </div>
-                      <span className="loyalty-sparkle">✦</span>
+                      <Badge variant="info">Year 2026</Badge>
                     </div>
 
-                    <div className="loyalty-points-progress">
-                      <div className="progress-numbers">
-                        <span><strong>780</strong> points</span>
-                        <span>1,000 to next level</span>
-                      </div>
-                      <div className="progress-bar-wrap">
-                        <div className="progress-bar-fill" style={{ width: '78%' }} />
-                      </div>
-                    </div>
+                    <div className="chart-and-stats-flex">
+                      
+                      <div className="activity-chart-wrap">
+                        <svg viewBox="0 0 320 160" className="analytics-svg">
+                          <line x1="30" y1="20" x2="300" y2="20" stroke="rgba(255,255,255,0.04)" />
+                          <line x1="30" y1="70" x2="300" y2="70" stroke="rgba(255,255,255,0.04)" />
+                          <line x1="30" y1="120" x2="300" y2="120" stroke="rgba(255,255,255,0.04)" />
 
-                    <div className="loyalty-stats-grid">
-                      <div className="stat-box">
-                        <span className="stat-label">Saved on Delivery</span>
-                        <span className="stat-value">₹450</span>
+                          {[
+                            { label: 'Jan', val: 60, h: 60, x: 50 },
+                            { label: 'Feb', val: 90, h: 90, x: 100 },
+                            { label: 'Mar', val: 50, h: 50, x: 150 },
+                            { label: 'Apr', val: 120, h: 120, x: 200 },
+                            { label: 'May', val: 140, h: 140, x: 250 },
+                          ].map((bar, idx) => (
+                            <g key={idx}>
+                              <rect
+                                x={bar.x}
+                                y={130 - bar.h}
+                                width="18"
+                                height={bar.h}
+                                rx="5"
+                                fill="url(#fintechBarGrad)"
+                                className="chart-bar-rect"
+                              />
+                              <text x={bar.x + 9} y="148" textAnchor="middle" fill="rgba(255,246,233,0.4)" fontSize="9">
+                                {bar.label}
+                              </text>
+                            </g>
+                          ))}
+                          
+                          <defs>
+                            <linearGradient id="fintechBarGrad" x1="0" y1="0" x2="0" y2="1">
+                              <stop offset="0%" stopColor="var(--pink)" />
+                              <stop offset="100%" stopColor="#C4763A" />
+                            </linearGradient>
+                          </defs>
+                        </svg>
                       </div>
-                      <div className="stat-box">
-                        <span className="stat-label">Free Donut Claims</span>
-                        <span className="stat-value">3</span>
+
+                      <div className="spending-summary-stats">
+                        <div className="mini-stat-item">
+                          <span className="lbl">Total Spent</span>
+                          <span className="val">₹1,562</span>
+                        </div>
+                        <div className="mini-stat-item">
+                          <span className="lbl">Avg Order</span>
+                          <span className="val">₹520</span>
+                        </div>
+                        <div className="mini-stat-item">
+                          <span className="lbl">Saved Delivery</span>
+                          <span className="val">₹120</span>
+                        </div>
+                        <div className="mini-stat-item">
+                          <span className="lbl">Loyalty Saved</span>
+                          <span className="val">₹450</span>
+                        </div>
                       </div>
-                      <div className="stat-box">
-                        <span className="stat-label">Referral Multiplier</span>
-                        <span className="stat-value">1.5x</span>
-                      </div>
+
                     </div>
                   </Card>
 
-                  {/* 2. Spendings & Activity Analytics */}
-                  <Card variant="default" className="analytics-card">
-                    <div className="analytics-header">
-                      <h3>Treat Activity</h3>
-                      <Badge variant="info">Monthly Overview</Badge>
+                  {/* Right Chart: Flavor Preference Donut Chart */}
+                  <Card variant="default" className="fintech-chart-card">
+                    <div className="card-header-flex">
+                      <div>
+                        <h3>Flavor Preference</h3>
+                        <p className="card-subtitle">Analytics based on ordering metrics</p>
+                      </div>
+                      <Badge variant="success">Active</Badge>
                     </div>
 
-                    {/* Custom SVG Bar Graph */}
-                    <div className="analytics-chart-container">
-                      <svg viewBox="0 0 400 160" className="analytics-svg">
-                        {/* Grid Lines */}
-                        <line x1="40" y1="20" x2="380" y2="20" stroke="rgba(255,255,255,0.06)" />
-                        <line x1="40" y1="70" x2="380" y2="70" stroke="rgba(255,255,255,0.06)" />
-                        <line x1="40" y1="120" x2="380" y2="120" stroke="rgba(255,255,255,0.06)" />
+                    <div className="chart-and-stats-flex flex-reverse">
+                      
+                      <div className="preference-chart-wrap">
+                        <svg viewBox="0 0 160 160" className="donut-chart-svg">
+                          {/* Segment 1: Glazed (45%) */}
+                          <circle cx="80" cy="80" r="55" fill="transparent" stroke="var(--pink)" strokeWidth="14" strokeDasharray="345.5" strokeDashoffset="0" />
+                          {/* Segment 2: Chocolate (30%) */}
+                          <circle cx="80" cy="80" r="55" fill="transparent" stroke="#C4763A" strokeWidth="14" strokeDasharray="345.5" strokeDashoffset="-155.5" />
+                          {/* Segment 3: Strawberry (15%) */}
+                          <circle cx="80" cy="80" r="55" fill="transparent" stroke="#FF9494" strokeWidth="14" strokeDasharray="345.5" strokeDashoffset="-259.1" />
+                          {/* Segment 4: Caramel (10%) */}
+                          <circle cx="80" cy="80" r="55" fill="transparent" stroke="#E2C799" strokeWidth="14" strokeDasharray="345.5" strokeDashoffset="-311.0" />
+                          
+                          <circle cx="80" cy="80" r="46" fill="#150a06" />
+                          <text x="80" y="76" textAnchor="middle" fill="#fff" fontSize="10" fontWeight="700">Top Flavor</text>
+                          <text x="80" y="92" textAnchor="middle" fill="var(--pink)" fontSize="9" fontWeight="700">Glazed</text>
+                        </svg>
+                      </div>
 
-                        {/* Bars */}
-                        {[
-                          { label: 'Jan', val: 60, h: 60, x: 70 },
-                          { label: 'Feb', val: 90, h: 90, x: 120 },
-                          { label: 'Mar', val: 50, h: 50, x: 170 },
-                          { label: 'Apr', val: 120, h: 120, x: 220 },
-                          { label: 'May', val: 140, h: 140, x: 270 },
-                        ].map((bar, i) => (
-                          <g key={i}>
-                            <rect
-                              x={bar.x}
-                              y={140 - bar.h}
-                              width="24"
-                              height={bar.h}
-                              rx="4"
-                              fill="url(#barGrad)"
-                              className="chart-bar"
-                            />
-                            <text x={bar.x + 12} y="155" textAnchor="middle" fill="rgba(255,246,233,0.4)" fontSize="10">
-                              {bar.label}
-                            </text>
-                          </g>
-                        ))}
+                      <div className="flavor-legend-list">
+                        <div className="legend-item">
+                          <span className="dot glaze" />
+                          <span className="name">Glazed</span>
+                          <span className="pct">45%</span>
+                        </div>
+                        <div className="legend-item">
+                          <span className="dot chocolate" />
+                          <span className="name">Chocolate</span>
+                          <span className="pct">30%</span>
+                        </div>
+                        <div className="legend-item">
+                          <span className="dot strawberry" />
+                          <span className="name">Strawberry</span>
+                          <span className="pct">15%</span>
+                        </div>
+                        <div className="legend-item">
+                          <span className="dot caramel" />
+                          <span className="name">Caramel</span>
+                          <span className="pct">10%</span>
+                        </div>
+                      </div>
 
-                        {/* Gradient definition */}
-                        <defs>
-                          <linearGradient id="barGrad" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="0%" stopColor="#FF6B9D" />
-                            <stop offset="100%" stopColor="#C4763A" />
-                          </linearGradient>
-                        </defs>
-                      </svg>
-                    </div>
-
-                    <div className="analytics-summary-row">
-                      <p>Total Donuts Ordered: <strong>24</strong></p>
-                      <p>Most Popular Day: <strong>Friday</strong></p>
                     </div>
                   </Card>
 
                 </div>
 
-                {/* RIGHT COLUMN: Achievements & Recommendations */}
-                <div className="dashboard-col-right">
+                {/* FULL WIDTH BOTTOM BLOCK: Favorite Desserts */}
+                <div className="dashboard-favorite-desserts-row">
+                  <Card variant="chocolate" className="favorite-desserts-card" padding="lg">
+                    <div className="fav-header">
+                      <h3>Favorite Desserts</h3>
+                      <p>Your most frequently ordered sweet treats</p>
+                    </div>
 
-                  {/* 1. Rewards & Achievements */}
-                  <Card variant="default" className="rewards-card">
-                    <h3>Achievements Completed</h3>
-
-                    <div className="achievements-list">
-                      {achievements.map((ach) => (
-                        <div key={ach.name} className="achievement-item">
-                          <div className="ach-icon">{ach.icon}</div>
-                          <div className="ach-info">
-                            <h4>{ach.name}</h4>
-                            <p>{ach.desc}</p>
+                    <div className="fav-items-grid">
+                      
+                      <div className="fav-item-box">
+                        <div className="fav-item-desc">
+                          <span className="fav-emoji">🍩</span>
+                          <div>
+                            <h4>Classic Glazed</h4>
+                            <p>Ordered 12 times</p>
                           </div>
-                          <Badge variant="secondary" size="sm">{ach.date}</Badge>
                         </div>
-                      ))}
+                        <div className="fav-progress-wrap">
+                          <div className="fav-progress-bar" style={{ width: '45%' }} />
+                          <span className="fav-pct">45%</span>
+                        </div>
+                      </div>
+
+                      <div className="fav-item-box">
+                        <div className="fav-item-desc">
+                          <span className="fav-emoji">🍫</span>
+                          <div>
+                            <h4>Dark Chocolate</h4>
+                            <p>Ordered 8 times</p>
+                          </div>
+                        </div>
+                        <div className="fav-progress-wrap">
+                          <div className="fav-progress-bar" style={{ width: '30%' }} />
+                          <span className="fav-pct">30%</span>
+                        </div>
+                      </div>
+
+                      <div className="fav-item-box">
+                        <div className="fav-item-desc">
+                          <span className="fav-emoji">🍓</span>
+                          <div>
+                            <h4>Strawberry Dream</h4>
+                            <p>Ordered 4 times</p>
+                          </div>
+                        </div>
+                        <div className="fav-progress-wrap">
+                          <div className="fav-progress-bar" style={{ width: '15%' }} />
+                          <span className="fav-pct">15%</span>
+                        </div>
+                      </div>
+
                     </div>
                   </Card>
-
-                  {/* 2. Personalized Recommendations */}
-                  <Card variant="chocolate" className="recommendations-card">
-                    <div className="reco-header">
-                      <h3>Tailored For Your Taste</h3>
-                      <Badge variant="gold">1.5x Points</Badge>
-                    </div>
-                    <p>Based on your love for classic glazes, we recommend these flavor profiles:</p>
-
-                    <div className="reco-items-grid">
-                      {recommendedItems.map((item) => (
-                        <div key={item.name} className="reco-item-box">
-                          <div className="reco-item-header">
-                            <span className="reco-emoji">🍩</span>
-                            <div>
-                              <h4>{item.name}</h4>
-                              <p className="reco-price">₹{item.price}</p>
-                            </div>
-                          </div>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => {
-                              addToCart(item);
-                              showToast('🛒', `${item.name} added to cart!`);
-                            }}
-                          >
-                            Add +
-                          </Button>
-                        </div>
-                      ))}
-                    </div>
-                  </Card>
-
                 </div>
 
               </div>
             )}
 
-            {/* VIEW 2: PREVIOUS ORDERS HISTORY */}
+            {/* VIEW 2: REWARDS & RECOMMENDATIONS */}
+            {activeTab === 'rewards' && (
+              <div className="dashboard-rewards-layout fade-in-dashboard">
+                
+                {/* Achievements List */}
+                <div className="rewards-section-wrapper">
+                  <div className="section-title-header">
+                    <h2>Sweet Achievements</h2>
+                    <p>Unlock badges and earn multipliers by ordering your favorite treats 🌟</p>
+                  </div>
+                  
+                  <div className="rewards-achievements-grid">
+                    {achievements.map((ach) => (
+                      <Card key={ach.name} variant="default" className="fintech-achievement-card">
+                        <div className="achievement-icon-bubble">{ach.icon}</div>
+                        <div className="achievement-details">
+                          <h4>{ach.name}</h4>
+                          <p>{ach.desc}</p>
+                          <div className="achievement-badge-footer">
+                            <Badge variant="secondary" size="sm">Unlocked {ach.date}</Badge>
+                            <span className="multiplier-tag">+50 XP</span>
+                          </div>
+                        </div>
+                      </Card>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Personalized Taste Recommendations */}
+                <div className="rewards-section-wrapper" style={{ marginTop: '2.5rem' }}>
+                  <div className="section-title-header">
+                    <h2>Personalized Taste Recommendations</h2>
+                    <p>Hand-crafted donut creations matching your favorite flavor profile (Glazed &amp; Sweet) 🎨</p>
+                  </div>
+
+                  <div className="rewards-recos-grid">
+                    {recommendedItems.map((item) => (
+                      <Card key={item.name} variant="glass" className="premium-reco-card">
+                        <div className="reco-badge-points">1.5x Points</div>
+                        <div className="reco-donut-visual">
+                          <span className="reco-donut-emoji">🍩</span>
+                        </div>
+                        <div className="reco-content-body">
+                          <h4>{item.name}</h4>
+                          <p className="reco-desc">A gorgeous, hand-baked treat loaded with premium toppings.</p>
+                          <div className="reco-footer-row">
+                            <span className="price-tag">₹{item.price}</span>
+                            <Button
+                              variant="primary"
+                              size="sm"
+                              onClick={() => {
+                                addToCart(item);
+                                showToast('🛒', `${item.name} added to cart!`);
+                              }}
+                            >
+                              Add To Cart
+                            </Button>
+                          </div>
+                        </div>
+                      </Card>
+                    ))}
+                  </div>
+                </div>
+
+              </div>
+            )}
+
+            {/* VIEW 3: PREVIOUS ORDERS HISTORY */}
             {activeTab === 'orders' && (
               <div className="dashboard-orders-history fade-in-dashboard">
 

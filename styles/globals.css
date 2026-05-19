@@ -1690,242 +1690,562 @@ footer {
   display: none;
 }
 
-/* Grid splits */
+/* Grid splits and Stacked layout */
+.dashboard-overview-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem;
+  width: 100%;
+}
 .dashboard-grid-layout {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
   gap: 2.5rem;
   align-items: start;
 }
-.dashboard-col-left,
-.dashboard-col-right {
+
+/* Premium Loyalty Showcase Layout */
+.dashboard-loyalty-showcase-row {
+  margin-bottom: 2rem;
+}
+.premium-loyalty-gold-card {
+  position: relative;
+  overflow: hidden;
+  background: rgba(18, 9, 7, 0.7) !important;
+  border: 1px solid rgba(255, 107, 157, 0.15) !important;
+}
+.loyalty-card-metallic-glow {
+  position: absolute;
+  top: -50%;
+  left: -20%;
+  width: 140%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 107, 157, 0.1) 0%, rgba(196, 118, 58, 0.05) 50%, transparent 100%);
+  pointer-events: none;
+  transform: rotate(-10deg);
+}
+.loyalty-card-flex-body {
+  display: flex;
+  gap: 3rem;
+  position: relative;
+  z-index: 2;
+}
+.loyalty-card-left {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
-}
-
-/* Loyalty progress card */
-.loyalty-card {
-  position: relative;
-}
-.loyalty-card-bg-glow {
-  position: absolute;
-  top: -40px;
-  right: -40px;
-  width: 150px;
-  height: 150px;
-  background: radial-gradient(circle, rgba(255, 107, 157, 0.18) 0%, transparent 70%);
-  pointer-events: none;
-}
-.loyalty-header {
-  display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 2rem;
+  border-right: 1px solid rgba(255, 246, 233, 0.08);
+  padding-right: 3rem;
+  min-height: 180px;
 }
-.loyalty-header h2 {
+.loyalty-brand-top {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.gold-sparkle {
+  color: #E2C799;
+  font-size: 1.2rem;
+  text-shadow: 0 0 10px rgba(226, 199, 153, 0.8);
+  animation: elementSway 3s ease-in-out infinite alternate;
+}
+.card-tier-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: #E2C799;
+}
+.loyalty-points-display h2 {
   font-family: 'Playfair Display', serif;
-  font-size: 1.8rem;
+  font-size: 3rem;
+  font-weight: 900;
   color: var(--cream);
-  margin-top: 0.5rem;
+  line-height: 1;
+  margin-bottom: 0.2rem;
+  background: linear-gradient(135deg, var(--cream) 30%, var(--pink) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-.loyalty-sparkle {
-  font-size: 1.5rem;
-  color: var(--glaze);
-  animation: elementSway 4s ease-in-out infinite;
+.loyalty-points-display p {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 246, 233, 0.4);
 }
-@keyframes elementSway {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
+.loyalty-card-footer-info {
+  display: flex;
+  gap: 2.5rem;
+  margin-top: auto;
+}
+.loyalty-card-footer-info .cc-lbl {
+  display: block;
+  font-size: 0.65rem;
+  color: rgba(255, 246, 233, 0.3);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+}
+.loyalty-card-footer-info .cc-val {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--cream);
 }
 
-.loyalty-points-progress {
-  margin-bottom: 2rem;
-}
-.progress-numbers {
+.loyalty-card-right {
+  flex: 1.5;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
+}
+.loyalty-card-right h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  margin-bottom: 0.4rem;
+}
+.progress-hint {
   font-size: 0.85rem;
   color: rgba(255, 246, 233, 0.5);
-  margin-bottom: 0.55rem;
+  margin-bottom: 1.8rem;
 }
-.progress-numbers strong {
-  color: var(--glaze);
-  font-size: 1.05rem;
-}
-.progress-bar-wrap {
-  height: 6px;
-  background: rgba(255, 246, 233, 0.08);
-  border-radius: 4px;
-  overflow: hidden;
-}
-.progress-bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--caramel), var(--glaze));
-  border-radius: 4px;
-}
-
-.loyalty-stats-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  border-top: 1px solid rgba(255, 246, 233, 0.06);
-  padding-top: 1.5rem;
-}
-.stat-box {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-.stat-label {
-  font-size: 0.72rem;
-  color: rgba(255, 246, 233, 0.4);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-.stat-value {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.3rem;
-  color: var(--cream);
-}
-
-/* Charts details */
-.analytics-card {
-  padding: 1.5rem 2rem;
-}
-.analytics-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.5rem;
-}
-.analytics-header h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.25rem;
-  color: var(--cream);
-}
-.analytics-chart-container {
-  margin: 1rem 0;
-}
-.chart-bar {
-  transition: height 0.5s ease-out;
-  cursor: pointer;
-}
-.chart-bar:hover {
-  fill: #ff6b9d;
-  opacity: 0.95;
-}
-.analytics-summary-row {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.85rem;
-  color: rgba(255, 246, 233, 0.55);
-  border-top: 1px solid rgba(255, 246, 233, 0.05);
-  padding-top: 1rem;
-  margin-top: 0.5rem;
-}
-.analytics-summary-row strong {
+.progress-hint strong {
   color: var(--pink);
 }
 
-/* Achievements */
-.rewards-card h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.25rem;
-  margin-bottom: 1.5rem;
+/* Membership Tier progress milestones */
+.tier-progress-milestones {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
 }
-.achievements-list {
+.milestone-line {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: rgba(255, 246, 233, 0.08);
+  z-index: 1;
+}
+.milestone-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #C4763A, var(--pink));
+  border-radius: 2px;
+}
+.milestone-node {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
-  gap: 1.1rem;
-}
-.achievement-item {
-  display: flex;
   align-items: center;
-  gap: 0.9rem;
-  background: rgba(255, 246, 233, 0.03);
-  border: 1px solid rgba(255, 246, 233, 0.05);
-  border-radius: 14px;
-  padding: 0.8rem 1rem;
-  transition: background 0.3s;
+  width: 60px;
 }
-.achievement-item:hover {
-  background: rgba(255, 107, 157, 0.06);
-}
-.ach-icon {
-  width: 36px;
-  height: 36px;
-  background: rgba(255, 246, 233, 0.05);
-  border-radius: 10px;
+.milestone-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #1e110c;
+  border: 2px solid rgba(255, 246, 233, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: rgba(255, 246, 233, 0.4);
+  transition: all 0.3s ease;
 }
-.ach-info {
-  flex: 1;
-}
-.ach-info h4 {
-  font-size: 0.88rem;
+.milestone-label {
+  margin-top: 0.6rem;
+  font-size: 0.7rem;
+  text-align: center;
+  color: rgba(255, 246, 233, 0.4);
+  white-space: nowrap;
   font-weight: 500;
-  color: var(--cream);
 }
-.ach-info p {
-  font-size: 0.76rem;
-  color: rgba(255, 246, 233, 0.45);
+.milestone-node.completed .milestone-dot {
+  background: #C4763A;
+  border-color: #C4763A;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(196, 118, 58, 0.4);
+}
+.milestone-node.completed .milestone-label {
+  color: #C4763A;
+}
+.milestone-node.active .milestone-dot {
+  background: var(--pink);
+  border-color: var(--pink);
+  color: #fff;
+  box-shadow: 0 0 15px rgba(255, 107, 157, 0.5);
+  transform: scale(1.15);
+}
+.milestone-node.active .milestone-label {
+  color: var(--pink);
+  font-weight: 700;
+}
+
+/* Analytics Dashboard Grid */
+.dashboard-analytics-grid-row {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+.fintech-chart-card {
+  background: rgba(18, 9, 7, 0.45) !important;
+  border: 1px solid rgba(255, 246, 233, 0.05) !important;
+  padding: 1.6rem 2rem !important;
+}
+.card-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+.card-header-flex h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+.card-subtitle {
+  font-size: 0.8rem;
+  color: rgba(255, 246, 233, 0.4);
+  margin-top: 0.1rem;
+}
+.chart-and-stats-flex {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+.chart-and-stats-flex.flex-reverse {
+  flex-direction: row-reverse;
+}
+.activity-chart-wrap {
+  flex: 1.5;
+}
+.analytics-svg {
+  width: 100%;
+  height: auto;
+}
+.chart-bar-rect {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.chart-bar-rect:hover {
+  opacity: 0.85;
+  filter: drop-shadow(0 0 8px var(--pink));
+  transform: translateY(-2px);
+}
+.spending-summary-stats {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.8rem;
+  border-left: 1px solid rgba(255, 246, 233, 0.05);
+  padding-left: 1.5rem;
+}
+.mini-stat-item {
+  display: flex;
+  flex-direction: column;
+}
+.mini-stat-item .lbl {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  color: rgba(255, 246, 233, 0.35);
+  letter-spacing: 0.04em;
+}
+.mini-stat-item .val {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--cream);
   margin-top: 0.1rem;
 }
 
-/* Recommendations styling */
-.recommendations-card {
-  border-color: rgba(196, 118, 58, 0.2);
-}
-.reco-header {
+/* Donut Chart visual styling */
+.preference-chart-wrap {
+  flex: 1.2;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  margin-bottom: 0.8rem;
 }
-.recommendations-card h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.25rem;
-  color: var(--cream);
+.donut-chart-svg {
+  width: 130px;
+  height: 130px;
+  transform: rotate(-90deg);
 }
-.recommendations-card p {
-  font-size: 0.82rem;
-  color: rgba(255, 246, 233, 0.5);
-  margin-bottom: 1.5rem;
+.donut-chart-svg circle {
+  transition: stroke-width 0.3s ease;
 }
-.reco-items-grid {
+.donut-chart-svg circle:hover {
+  stroke-width: 17;
+  filter: drop-shadow(0 0 5px rgba(255,255,255,0.1));
+}
+.donut-chart-svg text {
+  transform: rotate(90deg);
+  transform-origin: center;
+}
+
+.flavor-legend-list {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.9rem;
+  gap: 0.65rem;
 }
-.reco-item-box {
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.8rem;
+}
+.legend-item .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.legend-item .dot.glaze { background: var(--pink); }
+.legend-item .dot.chocolate { background: #C4763A; }
+.legend-item .dot.strawberry { background: #FF9494; }
+.legend-item .dot.caramel { background: #E2C799; }
+.legend-item .name {
+  color: rgba(255, 246, 233, 0.6);
+  flex: 1;
+}
+.legend-item .pct {
+  color: var(--cream);
+  font-weight: 700;
+}
+
+/* Favorite Desserts Row */
+.dashboard-favorite-desserts-row {
+  margin-top: 1rem;
+}
+.favorite-desserts-card {
+  background: rgba(43, 20, 15, 0.4) !important;
+  border: 1px solid rgba(196, 118, 58, 0.15) !important;
+}
+.fav-header h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+.fav-header p {
+  font-size: 0.8rem;
+  color: rgba(255, 246, 233, 0.4);
+  margin-top: 0.1rem;
+  margin-bottom: 1.5rem;
+}
+.fav-items-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.fav-item-box {
+  background: rgba(13, 6, 2, 0.3);
+  border: 1px solid rgba(255, 246, 233, 0.04);
+  border-radius: 16px;
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.2rem;
+  transition: all 0.3s ease;
+}
+.fav-item-box:hover {
+  transform: translateY(-4px);
+  border-color: rgba(196, 118, 58, 0.3);
+  background: rgba(13, 6, 2, 0.5);
+}
+.fav-item-desc {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.fav-emoji {
+  font-size: 1.8rem;
+}
+.fav-item-desc h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+.fav-item-desc p {
+  font-size: 0.75rem;
+  color: rgba(255, 246, 233, 0.4);
+}
+.fav-progress-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.fav-progress-bar {
+  height: 5px;
+  background: var(--pink);
+  border-radius: 3px;
+  box-shadow: 0 0 8px rgba(255, 107, 157, 0.4);
+}
+.fav-item-box:nth-child(2) .fav-progress-bar {
+  background: #C4763A;
+  box-shadow: 0 0 8px rgba(196, 118, 58, 0.4);
+}
+.fav-item-box:nth-child(3) .fav-progress-bar {
+  background: #FF9494;
+  box-shadow: 0 0 8px rgba(255, 148, 148, 0.4);
+}
+.fav-pct {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--cream);
+}
+
+/* Rewards and Recommendations Section */
+.dashboard-rewards-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.section-title-header {
+  margin-bottom: 1.6rem;
+}
+.section-title-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+.section-title-header p {
+  font-size: 0.88rem;
+  color: rgba(255, 246, 233, 0.45);
+  margin-top: 0.2rem;
+}
+.rewards-achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.fintech-achievement-card {
+  display: flex;
+  gap: 1rem;
+  background: rgba(18, 9, 7, 0.4) !important;
+  border: 1px solid rgba(255, 246, 233, 0.05) !important;
+  padding: 1.2rem !important;
+  transition: all 0.3s ease;
+}
+.fintech-achievement-card:hover {
+  transform: scale(1.02);
+  border-color: rgba(255, 107, 157, 0.2) !important;
+  background: rgba(18, 9, 7, 0.6) !important;
+}
+.achievement-icon-bubble {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255, 246, 233, 0.03);
+  border: 1px solid rgba(255, 246, 233, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+.achievement-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  flex: 1;
+}
+.achievement-details h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+.achievement-details p {
+  font-size: 0.78rem;
+  color: rgba(255, 246, 233, 0.4);
+  line-height: 1.3;
+}
+.achievement-badge-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(255, 246, 233, 0.04);
-  border-radius: 12px;
-  padding: 0.8rem 1rem;
+  margin-top: 0.6rem;
 }
-.reco-item-header {
+.multiplier-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #E2C799;
+}
+
+/* Personalized Recommendations Grid */
+.rewards-recos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.premium-reco-card {
+  position: relative;
+  overflow: hidden;
+  background: rgba(18, 9, 7, 0.5) !important;
+  border: 1px solid rgba(255, 107, 157, 0.1) !important;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.reco-badge-points {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 107, 157, 0.15);
+  color: var(--pink);
+  border: 1px solid rgba(255, 107, 157, 0.3);
+  padding: 0.3rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+.reco-donut-visual {
+  height: 120px;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  justify-content: center;
+  background: linear-gradient(180deg, rgba(255,255,255,0.01) 0%, rgba(255,255,255,0) 100%);
+  border-bottom: 1px solid rgba(255, 246, 233, 0.03);
 }
-.reco-emoji {
-  font-size: 1.6rem;
+.reco-donut-visual:hover .reco-donut-emoji {
+  transform: scale(1.1) rotate(15deg);
 }
-.reco-item-header h4 {
-  font-size: 0.88rem;
-  font-weight: 500;
-  color: var(--cream);
+.reco-donut-emoji {
+  font-size: 3rem;
+  filter: drop-shadow(0 0 12px rgba(255, 107, 157, 0.4));
+  transition: all 0.3s ease;
 }
-.reco-price {
+.reco-content-body {
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.reco-content-body h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+.reco-desc {
   font-size: 0.8rem;
-  color: var(--glaze);
-  margin-top: 0.1rem;
+  color: rgba(255, 246, 233, 0.45);
+  line-height: 1.4;
+  margin-bottom: 1.5rem;
+}
+.reco-footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+.price-tag {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--cream);
 }
 
 /* Order History styles */
